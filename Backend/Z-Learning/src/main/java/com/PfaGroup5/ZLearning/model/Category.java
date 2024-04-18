@@ -12,7 +12,7 @@ public class Category {
     @Id
     String id;
     String name;
-    ArrayList<Certif> certifs = new ArrayList<>();
+    ArrayList<String> certifId = new ArrayList<>();
 
 
 }

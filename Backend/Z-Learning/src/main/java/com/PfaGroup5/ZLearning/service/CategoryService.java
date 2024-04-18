@@ -13,4 +13,15 @@ public class CategoryService {
     public Category findByName(String name) {
         return categoryRepo.findByName(name);
     }
+    public void EditIdList(String action, String categotyName ,String certifIf){
+        if (action.equals("add")){
+            Category category = categoryRepo.findByName(categotyName);
+            category.getCertifId().add(certifIf);
+            categoryRepo.save(category);
+        }else if (action.equals("remove")){
+            Category category = categoryRepo.findByName(categotyName);
+            category.getCertifId().remove(certifIf);
+            categoryRepo.save(category);
+        }
+    }
 }
