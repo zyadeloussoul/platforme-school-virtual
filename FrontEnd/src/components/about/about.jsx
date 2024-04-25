@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
-function about() {
+function About() {
 
   return (
-    <>about</>
+    <>About</>
   )
 }
 
-export default about
+export default About

@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
-function newsletter() {
+function Newsletter() {
 
   return (
-    <>newsletter</>
+    <>Newsletter</>
   )
 }
 
-export default newsletter
+export default Newsletter

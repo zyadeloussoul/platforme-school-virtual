@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
-function course() {
+function Course() {
 
   return (
-    <>course</>
+    <>Course</>
   )
 }
 
-export default course
+export default Course

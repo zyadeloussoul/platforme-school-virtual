@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
-function hero() {
+function Home() {
 
   return (
-    <>hero</>
+    <>Home</>
   )
 }
 
-export default hero
+export default Home
