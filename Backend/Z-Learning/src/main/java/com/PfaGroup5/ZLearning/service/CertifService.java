@@ -8,6 +8,7 @@ import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -108,7 +109,13 @@ public class CertifService {
 
         return certif.getMainimage();
     }
-
+    public ArrayList<Certif> getAllCertifsByIds(ArrayList<String> ids){
+        ArrayList<Certif> certifs = new ArrayList<>();
+        for (String id : ids){
+            certifs.add(certifRepo.findById(id).orElse(null));
+        }
+        return certifs;
+    }
     public void deleteCertif(String id){
         certifRepo.deleteById(id);
     }
