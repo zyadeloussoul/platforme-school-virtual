@@ -9,6 +9,7 @@
 
   --white: #ffffff;
   --gray: #9e9e9e;
+  --dark-gray: #717171;
   --cyan: #26e8bd;
   --green: #127c71;
   --yellow: #ffaf35;
@@ -55,3 +56,7 @@ button {
   border: 2px solid var(--green);
 }
 
+.green
+{
+  color: var(--green);
+}
