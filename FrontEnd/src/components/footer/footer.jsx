@@ -14,7 +14,7 @@ function Footer() {
       <div className={styles.about}>
         <div className={styles.info}>
           <h2>ZLearning</h2>
-          <p>ZLearning is an online learning platform that has been operating since 2024 until now.</p>
+          <p>ZLearning est une plateforme d’apprentissage en ligne qui fonctionne depuis 2024 jusqu’à présent.</p>
         </div>
         <div className={styles.social}>
           <ul>
@@ -28,19 +28,21 @@ function Footer() {
 
       <div className={styles.more}>
         <div>
-          <h3>Courses</h3>
+          <h3>Cours</h3>
           <ul>
-            <li><a href='#'>Genie Civil</a></li>
-            <li><a href='#'>Management</a></li>
-            <li><a href='#'>Sante</a></li>
+            <li><a href='#'>Science</a></li>
+            <li><a href='#'>Finance</a></li>
+            <li><a href='#'>Psychologie</a></li>
+            <li><a href='#'>Art</a></li>
+            <li><a href='#'>Architecture</a></li>
           </ul>
         </div>
         <div>
           <h3>Menu</h3>
           <ul>
-            <li><a href='#home'>Home</a></li>
-            <li><a href='#courses'>Courses</a></li>
-            <li><a href='#about'>About</a></li>
+            <li><a href='#home'>Accueil</a></li>
+            <li><a href='#courses'>Cours</a></li>
+            <li><a href='#about'>À propos</a></li>
           </ul>
         </div>
       </div>

@@ -12,6 +12,7 @@
   --dark-gray: #717171;
   --cyan: #26e8bd;
   --green: #127c71;
+  --dark-green: #126c63;
   --yellow: #ffaf35;
   --pink: #f303ff;
   --purple: #551a8b;
@@ -49,11 +50,18 @@ button {
   background-color: var(--green);
   cursor: pointer;
 }
+button:hover {
+  background-color: var(--dark-green);
+}
 
 .btn-v2{
   color: var(--green);
   background-color: var(--white);
   border: 2px solid var(--green);
+}
+
+.btn-v2:hover{
+  background-color: var(--black);
 }
 
 .green

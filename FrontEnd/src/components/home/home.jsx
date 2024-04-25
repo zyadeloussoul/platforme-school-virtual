@@ -12,15 +12,15 @@ function Home() {
 
   const data = [
     {
-      text: "students",
+      text: "Étudiants",
       value: 10000
     },
     {
-      text: "Quality Course",
+      text: "Cours de qualité",
       value: 20
     },
     {
-      text: "Experience Professors",
+      text: "Professeurs expérimentés",
       value: 10
     }
   ];
@@ -34,9 +34,11 @@ function Home() {
             <img src={curve} alt='curve line' />
           </div>
           <h1>de différentes manières</h1>
-          <p>Let's take an online course to improve your skills in a different way, you can set your own study time according to your learning speed. So you san study comfortable and absorb tge material easily.</p>
+          <p>Prenons un cours en ligne pour améliorer vos compétences d’une manière différente. Vous pouvez définir votre propre temps d’étude en fonction de votre rythme d’apprentissage. Ainsi, vous pouvez étudier confortablement et assimiler facilement le matériel.</p>
           <div className={styles.buttons}>
-            <button>Get Started</button>
+            <a href="#courses">
+              <button>Commencer</button>
+            </a>
           </div>
         </div>
         <div className={styles.image}>
