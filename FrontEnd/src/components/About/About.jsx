@@ -38,7 +38,7 @@ const data = [
 function About() {
 
   return (
-    <div className={styles.container}>
+    <div id='about' className={styles.container}>
       <div className={styles.image}>
         <img src={girl} alt='girl pointing with finger' />
       </div>
