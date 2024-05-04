@@ -19,7 +19,7 @@ function Header() {
     "Architecture",
     "Finance",
     "Science",
-    "Psychologie"
+    "Psychologie",
   ];
 
   return (
@@ -52,11 +52,9 @@ function Header() {
       <div className={styles.panel}
           onMouseEnter={() => setPanelVisible(true)}
           onMouseLeave={() => setPanelVisible(false)}>
-        <ul>
         {category.map((c, index)=>(
-          <li key={index}><a href={`/courses/${c}`}>{c}</a></li>
+          <a key={index} href={`/courses/${c}`}>{c}</a>
         ))}
-        </ul>
       </div>
       )}
     </div>

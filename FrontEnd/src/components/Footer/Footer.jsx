@@ -30,11 +30,11 @@ function Footer() {
         <div>
           <h3>Cours</h3>
           <ul>
-            <li><a href='/courses/science'>Science</a></li>
-            <li><a href='/courses/finance'>Finance</a></li>
-            <li><a href='/courses/psychologie'>Psychologie</a></li>
-            <li><a href='/courses/art'>Art</a></li>
-            <li><a href='/courses/architecture'>Architecture</a></li>
+            <li><a href='/courses/Science'>Science</a></li>
+            <li><a href='/courses/Finance'>Finance</a></li>
+            <li><a href='/courses/Psychologie'>Psychologie</a></li>
+            <li><a href='/courses/Art'>Art</a></li>
+            <li><a href='/courses/Architecture'>Architecture</a></li>
           </ul>
         </div>
         <div>

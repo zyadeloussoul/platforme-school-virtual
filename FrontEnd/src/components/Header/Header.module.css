@@ -32,27 +32,24 @@
 .panel
 {
     text-align: center;
-
-    position: absolute;
     color: var(--white);
     background-color: var(--green);
+    width: 100%;
+    margin-top: 20px;
+    
+    position:relative;
 
-    width: 300px;
-    border-radius: 8px;
- 
-    left: 470px;
-    z-index: 100;
-}
+    display: flex;
+    justify-content: space-around;
 
-.panel ul
-{
-    list-style: none;
+    overflow-x: auto;
 }
 
 .panel a
 {
     color: var(--white);
-    padding: 5px 0;
+    padding: 5px 5px;
+    width: 100%;
 
     display: flex;
     justify-content: center;
