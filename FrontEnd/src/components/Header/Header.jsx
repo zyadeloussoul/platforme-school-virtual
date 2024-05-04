@@ -26,18 +26,18 @@ function Header() {
     <div>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <a href="#">ZLearning</a>
+          <a href="/">ZLearning</a>
         </div>
 
         <div className={styles.list}>
           <ul>
-            <li><CustomLink href="#home">Accueil</CustomLink></li>
+            <li><CustomLink href="/#home">Accueil</CustomLink></li>
             <li onMouseEnter={() => setPanelVisible(true)}
                 onMouseLeave={() => setPanelVisible(false)}>
                 <CustomLink href="/courses">Cours</CustomLink>
             </li>
-            <li><CustomLink href="#about">À propos</CustomLink></li>
-            <li><CustomLink href="#newsletter">Newsletter</CustomLink></li>
+            <li><CustomLink href="/#about">À propos</CustomLink></li>
+            <li><CustomLink href="/#newsletter">Newsletter</CustomLink></li>
           </ul>
         </div>
 

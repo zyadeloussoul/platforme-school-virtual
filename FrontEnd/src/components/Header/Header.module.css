@@ -7,7 +7,7 @@
 
 .logo a
 {
-    font-size: 18px;
+    font-size: 22px;
     color: var(--green);
 }
 
@@ -42,6 +42,11 @@
  
     left: 470px;
     z-index: 100;
+}
+
+.panel ul
+{
+    list-style: none;
 }
 
 .panel a

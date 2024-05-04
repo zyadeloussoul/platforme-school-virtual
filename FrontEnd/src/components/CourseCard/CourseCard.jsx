@@ -20,7 +20,7 @@ function CourseCard({title, image, price, category, desctiption, rating, url}) {
           alt="Course Thumbnail"
           className={styles.courseImage}
         />
-        <p className={styles.coursePrice}>${price}</p>
+        <p className={styles.coursePrice}>{price} Dhs</p>
         <div className={styles.courseRating}>
           {ratingStars(rating)}
         </div>

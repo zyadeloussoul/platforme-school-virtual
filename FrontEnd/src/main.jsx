@@ -28,6 +28,10 @@ const router = createBrowserRouter([
     path: "courses",
     element: <CoursesPage />,
   },
+  {
+    path: "courses/:category",
+    element: <CoursesPage />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
