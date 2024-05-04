@@ -39,6 +39,12 @@ a:hover {
   color: var(--green);
 }
 
+input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
 button {
   border-radius: 10px;
   border: 1px solid transparent;
@@ -49,7 +55,9 @@ button {
   color: var(--white);
   background-color: var(--green);
   cursor: pointer;
+  transition: background-color 0.2s;
 }
+
 button:hover {
   background-color: var(--dark-green);
 }

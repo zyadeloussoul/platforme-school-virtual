@@ -11,7 +11,7 @@ export default function ErrorPage() {
 
   return (
     <div className={styles.errorContainer}>
-      <h1 className={styles.errorCode}>Oops!</h1>
+      <h1 className={styles.errorCode}>Oops! 🚀</h1>
       <p className={styles.errorMessage}>Sorry, a <i>{error.statusText || error.message}</i> error has occurred.</p>
       <button className={styles.errorButton} onClick={handleGoBack}>Go Back</button>
     </div>
