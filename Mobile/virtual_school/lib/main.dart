@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:virtual_school/apropos.dart';
-import 'apropos.dart';
+import 'package:virtual_school/signup.dart';
 import 'newlettress.dart';
 import 'footer.dart';
+import 'login.dart';
+import 'signup.dart';
 void main() {
   runApp(MyApp());
 }
@@ -55,6 +55,23 @@ class HomePage extends StatelessWidget {
       price: 29.99,
     ),
   ];
+ final ScrollController _scrollController = ScrollController();
+
+  void _scrollToTop() {
+    _scrollController.animateTo(
+      0.0,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void _scrollToBottom() {
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +92,10 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
+      
       drawer: Drawer(
         child: Column(
+          
           children: <Widget>[
             DrawerHeader(
               child: Text('Menu'),
@@ -86,42 +105,55 @@ class HomePage extends StatelessWidget {
             ),
             Expanded(
               child: ListView(
+                
                 padding: EdgeInsets.symmetric(),
                 children: <Widget>[
                   ListTile(
                     title: Text('Accueil'),
                     onTap: () {
-                      // Update the UI
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => HomePage(),
+                      ));
                     },
                   ),
                   ListTile(
                     title: Text('Cours'),
                     onTap: () {
-                      // Update the UI
+                   
                     },
                   ),
                   ListTile(
                     title: Text('À propos'),
-                    onTap: () {
-                      // Update the UI
+                   onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => aapropos(),
+                      ));
                     },
                   ),
                   ListTile(
                     title: Text('Newsletters'),
                     onTap: () {
-                      // Update the UI
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => NewLettres(),
+                      ));
                     },
                   ),
                   ListTile(
                     title: Text('Se connecter'),
                     onTap: () {
-                      // Update the UI
+                      Navigator.push(
+                        context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
                     },
                   ),
                   ListTile(
                     title: Text("S'inscrire"),
                     onTap: () {
-                      // Update the UI
+                        Navigator.push(
+                        context,
+                      MaterialPageRoute(builder: (context) => SignUpPage()),
+                      );
                     },
                   ),
                 ],
