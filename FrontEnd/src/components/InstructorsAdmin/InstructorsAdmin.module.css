@@ -2,3 +2,9 @@
 {
     padding: 25px;
 }
+
+.header
+{
+    display: flex;
+    justify-content: space-between;
+}

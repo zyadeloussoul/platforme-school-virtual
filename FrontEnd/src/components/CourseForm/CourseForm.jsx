@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './CourseForm.module.css';
 
-function CourseForm({ title, description, ADD, CANCEL }) {
+function CourseForm({ ADD, CANCEL }) {
   const [courseData, setCourseData] = useState({
     title: '',
     price: '',
@@ -26,6 +26,7 @@ function CourseForm({ title, description, ADD, CANCEL }) {
     e.preventDefault();
     // Handle form submission (e.g., send data to backend)
     console.log('Course data submitted:', courseData);
+    ADD();
   };
 
   return (
@@ -38,7 +39,7 @@ function CourseForm({ title, description, ADD, CANCEL }) {
           <input type="text" name="price" placeholder='Prix' value={courseData.price} onChange={handleInputChange} />
           <input type="number" name="rating" min="1" max="5" placeholder='Rating' value={courseData.rating} onChange={handleInputChange} />
           <label>
-            Category:
+            Category:<br />
             <select name="category" value={courseData.category} onChange={handleInputChange}>
               <option value="web">Web Development</option>
               <option value="design">Design</option>
@@ -50,15 +51,16 @@ function CourseForm({ title, description, ADD, CANCEL }) {
             <input type="file" name="image" value={courseData.image} onChange={handleInputChange} />
           </label>
           <label>
-            Start Date:
-            <input type="date" name="startDate" value={courseData.startDate} onChange={handleInputChange} />
+            Start Date - End Date:<br />
+            <div className={styles.dateContainer}>
+              <input type="date" name="startDate" value={courseData.startDate} onChange={handleInputChange} />
+              <p>-</p>
+              <input type="date" name="endDate" value={courseData.endDate} onChange={handleInputChange} />
+            </div>
           </label>
+
           <label>
-            End Date:
-            <input type="date" name="endDate" value={courseData.endDate} onChange={handleInputChange} />
-          </label>
-          <label>
-            Instructor:
+            Instructor:<br />
             <select name="instructor" value={courseData.instructor} onChange={handleInputChange}>
               <option value="ahmed">Ahmed Mohamed</option>
               <option value="yassine">Yassine Elmohssine</option>
@@ -69,9 +71,9 @@ function CourseForm({ title, description, ADD, CANCEL }) {
           <input type="text" name="quizUrl" placeholder='Quiz URL' value={courseData.quizUrl} onChange={handleInputChange} />
         </form>
         <div className={styles.cardButtons}>
-          <button className={styles.cardOK} onClick={ADD}>Ajouter</button>
+          <button type="submit" className={styles.cardOK} onClick={handleSubmit}>Ajouter</button>
           {CANCEL &&
-            <button type="submit" className={styles.cardCancel} onClick={CANCEL}>Annuler</button>}
+            <button className={styles.cardCancel} onClick={CANCEL}>Annuler</button>}
         </div>
       </div>
     </div>

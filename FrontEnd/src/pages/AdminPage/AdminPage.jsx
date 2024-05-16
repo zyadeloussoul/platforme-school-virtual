@@ -22,9 +22,9 @@ export default function AdminPage() {
             <div className={styles.sidebar}>
               <ul>
                 <a href="/admin"><li>Dashboard</li></a>
-                <a href="/admin/courses"><li>Courses</li></a>
-                <a href="/admin/categories"><li>Categories</li></a>
-                <a href="/admin/instructors"><li>Instructors</li></a>
+                <a href="/admin/courses"><li>Cours</li></a>
+                <a href="/admin/categories"><li>Catégories</li></a>
+                <a href="/admin/instructors"><li>Instructeurs</li></a>
               </ul>
             </div>
             {/* outlet */}
