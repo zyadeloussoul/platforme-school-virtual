@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import CourseCard from '../../components/CourseCard/CourseCard';
+import PopUp from "../../components/PopUp/PopUp";
 
 //Temp Data
 const categories = [
@@ -97,6 +98,7 @@ const coursesData = [
 
 function CoursesPage() {
   const params = useParams();
+  const [pop, setPop] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -110,9 +112,27 @@ function CoursesPage() {
     return nameMatches && categoryMatches && priceMatches;
   });
 
-  useEffect(()=>{
-    if(params.category)
-    {
+  const setScroll = (val) => {
+    document.body.style.overflow = val ? 'scroll' : 'hidden';
+  }
+
+  const enroll = () => {
+    setScroll(false);
+    setPop(true);
+  }
+
+  const popUpOK = () => {
+    setScroll(true);
+    setPop(false);
+  }
+
+  const popUpCancel = () => {
+    setScroll(true);
+    setPop(false);
+  }
+
+  useEffect(() => {
+    if (params.category) {
       setSelectedCategory(params.category);
     }
   }, []);
@@ -159,9 +179,19 @@ function CoursesPage() {
         </div>
         <div className={styles.courses}>
           {filteredCourses.map((course) => (
-            <CourseCard key={course.id} courseId={course.id} title={course.title} image={course.image} price={course.price} category={course.category} desctiption={course.description} rating={course.rating} url={course.url} />
+            <CourseCard key={course.id} courseId={course.id} 
+                        title={course.title} image={course.image} 
+                        price={course.price} category={course.category} 
+                        desctiption={course.description} rating={course.rating} 
+                        url={course.url} register={enroll}/>
           ))}
         </div>
+        {pop &&
+          <PopUp title="S'inscrire à ce cours"
+            description="Êtes-vous sûr de vouloir vous inscrire à ce cours ?"
+            OK={popUpOK}
+            CANCEL={popUpCancel} />
+        }
       </div>
       <Footer />
     </>

@@ -32,14 +32,14 @@ function CourseForm({ ADD, CANCEL }) {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h2 className={styles.cardTitle}>Course</h2>
+        <h2 className={styles.cardTitle}>Cours</h2>
         <form onSubmit={handleSubmit}>
           <input type="text" name="title" placeholder='Titre' value={courseData.title} onChange={handleInputChange} />
           <textarea name="description" placeholder='Description' value={courseData.description} onChange={handleInputChange} />
           <input type="text" name="price" placeholder='Prix' value={courseData.price} onChange={handleInputChange} />
-          <input type="number" name="rating" min="1" max="5" placeholder='Rating' value={courseData.rating} onChange={handleInputChange} />
+          <input type="number" name="rating" min="1" max="5" placeholder='Evaluation (1-5)' value={courseData.rating} onChange={handleInputChange} />
           <label>
-            Category:<br />
+            Catégorie:<br />
             <select name="category" value={courseData.category} onChange={handleInputChange}>
               <option value="web">Web Development</option>
               <option value="design">Design</option>
@@ -51,7 +51,7 @@ function CourseForm({ ADD, CANCEL }) {
             <input type="file" name="image" value={courseData.image} onChange={handleInputChange} />
           </label>
           <label>
-            Start Date - End Date:<br />
+            Date de début - Date de fin:<br />
             <div className={styles.dateContainer}>
               <input type="date" name="startDate" value={courseData.startDate} onChange={handleInputChange} />
               <p>-</p>
@@ -60,7 +60,7 @@ function CourseForm({ ADD, CANCEL }) {
           </label>
 
           <label>
-            Instructor:<br />
+            Instructeur:<br />
             <select name="instructor" value={courseData.instructor} onChange={handleInputChange}>
               <option value="ahmed">Ahmed Mohamed</option>
               <option value="yassine">Yassine Elmohssine</option>
