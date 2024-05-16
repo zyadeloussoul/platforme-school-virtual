@@ -22,6 +22,11 @@ function Header() {
     "Psychologie",
   ];
 
+  const coursToggle = (e)=>{
+    e.preventDefault();
+    setPanelVisible(!isPanelVisible);
+  }
+
   return (
     <div>
       <div className={styles.container}>
@@ -32,9 +37,8 @@ function Header() {
         <div className={styles.list}>
           <ul>
             <li><CustomLink href="/#home">Accueil</CustomLink></li>
-            <li onMouseEnter={() => setPanelVisible(true)}
-                onMouseLeave={() => setPanelVisible(false)}>
-                <CustomLink href="/courses">Cours</CustomLink>
+            <li onClick={coursToggle}>
+                <CustomLink href="">Cours</CustomLink>
             </li>
             <li><CustomLink href="/#about">À propos</CustomLink></li>
             <li><CustomLink href="/#newsletter">Newsletter</CustomLink></li>
@@ -49,9 +53,7 @@ function Header() {
 
       {/* Courses sub-navbar */}
       {isPanelVisible && (
-      <div className={styles.panel}
-          onMouseEnter={() => setPanelVisible(true)}
-          onMouseLeave={() => setPanelVisible(false)}>
+      <div className={styles.panel}>
         {category.map((c, index)=>(
           <a key={index} href={`/courses/${c}`}>{c}</a>
         ))}

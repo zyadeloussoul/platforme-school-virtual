@@ -27,6 +27,11 @@ const coursesData = [
     description: "Explorez l'impact des activités humaines sur l'environnement.",
     image: "https://images.pexels.com/photos/6990475/pexels-photo-6990475.jpeg",
     url: "#",
+    startDate: "",
+    endDate: "",
+    instructor: "",
+    urlVideo: "",
+    quizUrl: "",
   },
   {
     id: 2,
@@ -37,6 +42,11 @@ const coursesData = [
     description: "Apprenez les compétences financières essentielles pour gérer l'argent et les investissements.",
     image: "https://images.pexels.com/photos/6693661/pexels-photo-6693661.jpeg",
     url: "#",
+    startDate: "",
+    endDate: "",
+    instructor: "",
+    urlVideo: "",
+    quizUrl: "",
   },
   {
     id: 3,
@@ -47,6 +57,11 @@ const coursesData = [
     description: "Découvrez les bases du comportement humain, de la cognition et des processus mentaux.",
     image: "https://images.pexels.com/photos/4101143/pexels-photo-4101143.jpeg",
     url: "#",
+    startDate: "",
+    endDate: "",
+    instructor: "",
+    urlVideo: "",
+    quizUrl: "",
   },
   {
     id: 4,
@@ -57,6 +72,11 @@ const coursesData = [
     description: "Explorez les mouvements artistiques, les chefs-d'œuvre et les contextes culturels.",
     image: "https://images.pexels.com/photos/375882/pexels-photo-375882.jpeg",
     url: "#",
+    startDate: "",
+    endDate: "",
+    instructor: "",
+    urlVideo: "",
+    quizUrl: "",
   },
   {
     id: 5,
@@ -67,6 +87,11 @@ const coursesData = [
     description: "Apprenez les principes de la conception et de la construction de bâtiments respectueux de l'environnement.",
     image: "https://images.pexels.com/photos/6416349/pexels-photo-6416349.jpeg",
     url: "#",
+    startDate: "",
+    endDate: "",
+    instructor: "",
+    urlVideo: "",
+    quizUrl: "",
   },
 ];
 
@@ -134,7 +159,7 @@ function CoursesPage() {
         </div>
         <div className={styles.courses}>
           {filteredCourses.map((course) => (
-            <CourseCard key={course.id} title={course.title} image={course.image} price={course.price} category={course.category} desctiption={course.description} rating={course.rating} url={course.url} />
+            <CourseCard key={course.id} courseId={course.id} title={course.title} image={course.image} price={course.price} category={course.category} desctiption={course.description} rating={course.rating} url={course.url} />
           ))}
         </div>
       </div>

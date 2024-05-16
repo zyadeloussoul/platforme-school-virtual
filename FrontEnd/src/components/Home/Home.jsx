@@ -36,7 +36,7 @@ function Home() {
           <h1>de différentes manières</h1>
           <p>Prenons un cours en ligne pour améliorer vos compétences d’une manière différente. Vous pouvez définir votre propre temps d’étude en fonction de votre rythme d’apprentissage. Ainsi, vous pouvez étudier confortablement et assimiler facilement le matériel.</p>
           <div className={styles.buttons}>
-            <a href="#courses">
+            <a href="/courses">
               <button>Commencer</button>
             </a>
           </div>

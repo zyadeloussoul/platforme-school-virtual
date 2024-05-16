@@ -5,21 +5,23 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 20px;
+  width: 480px;
   margin-bottom: 20px;
-}
-
-/* Course image */
-.courseImage {
-  width: 400px;
-  height: 270px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-right: 20px;
 }
 
 /* Course details */
 .courseDetails {
   flex: 1;
+}
+
+/* Course image */
+.courseImage {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+  cursor: pointer;
 }
 
 /* Course title */
@@ -55,14 +57,39 @@
   font-size: 0.875rem;
   color: #333;
   margin-bottom: 16px;
+
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* Buttons Container */
+.buttonsContainer
+{
+  display: flex;
+  flex-direction: column;
+}
 /* Register button */
-.registerButton {
+.registerButton,
+.detailButton {
   color: #ffffff;
   border: none;
   border-radius: 4px;
   padding: 8px 16px;
+  margin-top: 10px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+}
+
+.detailButton
+{
+  color: var(--green);
+  background-color: var(--white);
+  border: 3px solid var(--green);
+}
+
+.detailButton:hover
+{
+  color: var(--white);
+  background-color: var(--green);
 }

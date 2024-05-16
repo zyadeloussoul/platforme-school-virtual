@@ -6,13 +6,11 @@ export function formatNumber(number) {
     else if (number < 1e9)
         return (number / 1e6) + 'M';
     else
-        return (number / 1e9) + 'B'; 
+        return (number / 1e9) + 'B';
 }
 
-export function ratingStars(number)
-{
-    switch(number)
-    {
+export function ratingStars(number) {
+    switch (number) {
         case 1:
             return "⭐";
         case 2:
@@ -26,4 +24,22 @@ export function ratingStars(number)
         default:
             return "";
     }
+}
+
+export function formatDate(inputDate) {
+    const dateParts = inputDate.split('/');
+    const day = parseInt(dateParts[0], 10);
+    const month = parseInt(dateParts[1], 10);
+    const year = parseInt(dateParts[2], 10);
+
+    const monthNames = [
+        'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+        'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+    ];
+
+    const formattedMonth = monthNames[month - 1];
+
+    const formattedDate = `${formattedMonth} ${day}, ${year}`;
+
+    return formattedDate;
 }
