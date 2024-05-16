@@ -8,9 +8,9 @@ function PopUp({title, description, OK, CANCEL}) {
         <h2 className={styles.cardTitle}>{title}</h2>
         <p className={styles.cardDescription}>{description}</p>
         <div className={styles.cardButtons}>
-          <button className={styles.cardOK} onClick={OK}>{CANCEL ? "Yes" : "OK"}</button>
+          <button className={styles.cardOK} onClick={OK}>{CANCEL ? "Oui" : "OK"}</button>
           {CANCEL &&
-          <button className={styles.cardCancel} onClick={CANCEL}>Cancel</button>}
+          <button className={styles.cardCancel} onClick={CANCEL}>Annuler</button>}
         </div>
       </div>
     </div>

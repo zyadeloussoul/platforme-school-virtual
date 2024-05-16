@@ -11,6 +11,10 @@ import CoursesPage from './pages/CoursesPage/CoursesPage.jsx';
 import CoursePage from './pages/CoursePage/CoursePage.jsx';
 import ErrorPage from "./pages/ErrorPage/ErrorPage.jsx";
 import AdminPage from "./pages/AdminPage/AdminPage.jsx";
+import CoursesAdmin from './components/CoursesAdmin/CoursesAdmin.jsx';
+import DashboardAdmin from './components/DashboardAdmin/DashboardAdmin.jsx';
+import CategoriesAdmin from './components/CategoriesAdmin/CategoriesAdmin.jsx';
+import InstructorsAdmin from './components/InstructorsAdmin/InstructorsAdmin.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +33,24 @@ const router = createBrowserRouter([
   {
     path: "admin",
     element: <AdminPage />,
+    children: [
+      {
+        path: "",
+        element: <DashboardAdmin />,
+      },
+      {
+        path: "courses",
+        element: <CoursesAdmin />,
+      },
+      {
+        path: "categories",
+        element: <CategoriesAdmin />,
+      },
+      {
+        path: "instructors",
+        element: <InstructorsAdmin />,
+      },
+    ]
   },
   {
     path: "courses",
