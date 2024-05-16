@@ -59,8 +59,8 @@
 /* Instructor Card */
 .intructorCard
 {
-    
 }
+
 
 .intructorInfo
 {
@@ -98,4 +98,17 @@
 .quizCard p
 {
     margin: 10px 0;
+}
+
+/* Video Container */
+.courseVideo
+{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    aspect-ratio: 16/9;
+}
+
+.courseVideo h3
+{
+    margin-bottom: 10px;
 }

@@ -2,6 +2,7 @@ import styles from "./CoursePage.module.css";
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import ReactPlayer from 'react-player';
 
 //components
 import Header from '../../components/Header/Header';
@@ -31,7 +32,7 @@ function CoursesPage() {
     startDate: "22/05/2024",
     endDate: "21/06/2024",
     instructor: "Ahmed",
-    urlVideo: "",
+    urlVideo: "https://www.youtube.com/watch?v=Znzq_a3nasY",
     quizUrl: "",
   };
 
@@ -60,6 +61,16 @@ function CoursesPage() {
             <h3>À propos de ce cours</h3>
             <p>{courseData.description}</p>
           </div>
+          {courseData.urlVideo &&
+            <div className={styles.courseVideo}>
+              <h3>Enregistrement vidéo du cours</h3>
+              <ReactPlayer
+                url={courseData.urlVideo}
+                width="100%"
+                height="100%"
+                controls />
+            </div>
+          }
         </div>
         <div className={styles.side}>
           {/* Course Info */}
