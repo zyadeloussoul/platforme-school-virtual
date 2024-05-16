@@ -6,6 +6,7 @@
   border-radius: 8px;
   padding: 20px;
   width: 480px;
+  height: max-content;
   margin-bottom: 20px;
 }
 

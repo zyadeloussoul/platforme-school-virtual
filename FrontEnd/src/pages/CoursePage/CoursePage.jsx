@@ -7,6 +7,7 @@ import ReactPlayer from 'react-player';
 //components
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
+import PopUp from "../../components/PopUp/PopUp";
 
 //utils
 import { ratingStars, formatDate } from "../../utils/helpers";
@@ -17,6 +18,7 @@ import profileHolder from "../../assets/images/profile.png";
 
 function CoursesPage() {
   const params = useParams();
+  const [pop, setPop] = useState(false);
   const [id, setId] = useState('');
 
   const courseData =
@@ -35,6 +37,25 @@ function CoursesPage() {
     urlVideo: "https://www.youtube.com/watch?v=Znzq_a3nasY",
     quizUrl: "",
   };
+
+  const setScroll = (val)=>{
+    document.body.style.overflow = val ? 'scroll' : 'hidden';
+  }
+
+  const enroll = ()=>{
+    setScroll(false);
+    setPop(true);
+  }
+
+  const popUpOK = ()=>{
+    setScroll(true);
+    setPop(false);
+  }
+
+  const popUpCancel = ()=>{
+    setScroll(true);
+    setPop(false);
+  }
 
   useEffect(() => {
     if (params.id) {
@@ -81,7 +102,14 @@ function CoursesPage() {
             </div>
             <p><i>{formatDate(courseData.startDate)}</i> à <i>{formatDate(courseData.endDate)}</i></p>
             <p className={styles.coursePrice}>{courseData.price} Dhs</p>
-            <button className={styles.courseButton}>S'inscrire à ce cours</button>
+            <button className={styles.courseButton} onClick={enroll}>S'inscrire à ce cours</button>
+
+            {pop &&
+            <PopUp title="S'inscrire à ce cours" 
+                   description="Êtes-vous sûr de vouloir vous inscrire à ce cours ?" 
+                   OK={popUpOK}
+                   CANCEL={popUpCancel}/>
+            }
           </div>
 
           {/* Instructor */}
