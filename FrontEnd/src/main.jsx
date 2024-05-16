@@ -8,7 +8,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from './pages/LoginPage/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage/RegisterPage.jsx';
 import CoursesPage from './pages/CoursesPage/CoursesPage.jsx';
+import CoursePage from './pages/CoursePage/CoursePage.jsx';
 import ErrorPage from "./pages/ErrorPage/ErrorPage.jsx";
+import AdminPage from "./pages/AdminPage/AdminPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,12 +27,20 @@ const router = createBrowserRouter([
     element: <RegisterPage />,
   },
   {
+    path: "admin",
+    element: <AdminPage />,
+  },
+  {
     path: "courses",
     element: <CoursesPage />,
   },
   {
     path: "courses/:category",
     element: <CoursesPage />,
+  },
+  {
+    path: "courses/:category/:id",
+    element: <CoursePage />,
   },
 ]);
 
