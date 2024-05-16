@@ -30,19 +30,19 @@ function Footer() {
         <div>
           <h3>Cours</h3>
           <ul>
-            <li><a href='#'>Science</a></li>
-            <li><a href='#'>Finance</a></li>
-            <li><a href='#'>Psychologie</a></li>
-            <li><a href='#'>Art</a></li>
-            <li><a href='#'>Architecture</a></li>
+            <li><a href='/courses/Science'>Science</a></li>
+            <li><a href='/courses/Finance'>Finance</a></li>
+            <li><a href='/courses/Psychologie'>Psychologie</a></li>
+            <li><a href='/courses/Art'>Art</a></li>
+            <li><a href='/courses/Architecture'>Architecture</a></li>
           </ul>
         </div>
         <div>
           <h3>Menu</h3>
           <ul>
-            <li><a href='#home'>Accueil</a></li>
-            <li><a href='#courses'>Cours</a></li>
-            <li><a href='#about'>À propos</a></li>
+            <li><a href='/#home'>Accueil</a></li>
+            <li><a href='/#courses'>Cours</a></li>
+            <li><a href='/#about'>À propos</a></li>
           </ul>
         </div>
       </div>

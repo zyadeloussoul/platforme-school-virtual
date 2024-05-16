@@ -17,7 +17,7 @@
     font-size: 52px;
 }
 
-.title h1
+.title
 {
     position: relative;
 }
@@ -25,7 +25,7 @@
 .title img
 {
     position: absolute;
-    top: 330px;
+    top: 65px;
     width: 200px;
 }
 

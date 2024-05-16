@@ -48,7 +48,7 @@
 {
     width: 400px;
     border-radius: 12px;
-    border: none;
+    border: none !important;
     outline: 0;
 }
 
