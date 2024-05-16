@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'detailscourses.dart';
+import 'student.dart';
+import 'confirmation.dart';
 class CoursePage extends StatefulWidget {
   final List<Course> courses;
 
@@ -206,7 +208,10 @@ class _CoursePageState extends State<CoursePage> {
       },
     ).then((value) {
       if (value == true) {
-        // Action lorsque l'utilisateur clique sur "Oui"
+        Navigator.push(
+                                     context,
+                                  MaterialPageRoute(builder: (context) => ConfirmationPage(student: students[0])),
+                                     );
       }
     });
   },

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
+import 'student.dart';
+import 'confirmation.dart';
 class CourseDetailsPage extends StatelessWidget {
   final Course course;
 
@@ -99,7 +101,10 @@ class CourseDetailsPage extends StatelessWidget {
       },
     ).then((value) {
       if (value == true) {
-        // Action lorsque l'utilisateur clique sur "Oui"
+        Navigator.push(
+                                     context,
+                                  MaterialPageRoute(builder: (context) => ConfirmationPage(student: students[0])),
+                                     );
       }
     });
   },
