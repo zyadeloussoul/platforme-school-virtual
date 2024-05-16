@@ -7,12 +7,9 @@ import { ratingStars } from "../../utils/helpers";
 //images
 import placeholder from "../../assets/images/placeholder.png";
 
-function CourseCard({ courseId, title, image, price, category, desctiption, rating, url }) {
+function CourseCard({ courseId, title, image, price, category, desctiption, rating, url, register }) {
   const navigate = useNavigate();
 
-  const register = (url) => {
-    alert("soon:" + url);
-  }
   const open = () => {
     navigate(`/courses/${category}/${courseId}`);
   }
