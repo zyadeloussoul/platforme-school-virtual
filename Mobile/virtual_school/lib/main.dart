@@ -5,6 +5,9 @@ import 'newlettress.dart';
 import 'footer.dart';
 import 'login.dart';
 import 'signup.dart';
+import 'cours.dart';
+import 'confirmation.dart';
+import 'student.dart';
 void main() {
   runApp(MyApp());
 }
@@ -116,12 +119,15 @@ class HomePage extends StatelessWidget {
                       ));
                     },
                   ),
-                  ListTile(
-                    title: Text('Cours'),
-                    onTap: () {
-                   
-                    },
-                  ),
+                    ListTile(
+                        title: Text('Cours'),
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => CoursePage(courses),
+                          ));
+                        },
+                      ),
+
                   ListTile(
                     title: Text('À propos'),
                    onTap: () {
@@ -194,7 +200,9 @@ class HomePage extends StatelessWidget {
                       SizedBox(height: 20.0),
                       ElevatedButton(
                         onPressed: () {
-                          // Action when button is pressed
+                         Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => CoursePage(courses),
+                          ));
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
@@ -292,12 +300,42 @@ class HomePage extends StatelessWidget {
                                       style: TextStyle(fontSize: 14.0, color: Colors.green),
                                     ),
                                     SizedBox(height: 10.0),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        // Action when button is pressed
-                                      },
-                                      child: Text("S'inscrire au cours"),
-                                    ),
+                                  ElevatedButton(
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text("Confirmation"),
+                                      content: Text("Voulez-vous vraiment vous inscrire au cours ?"),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop(false); // Ferme la boîte de dialogue et renvoie false
+                                          },
+                                          child: Text("Non"),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop(true); // Ferme la boîte de dialogue et renvoie true
+                                          },
+                                          child: Text("Oui"),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ).then((value) {
+                                  if (value == true) {
+                              Navigator.push(
+                                     context,
+                                  MaterialPageRoute(builder: (context) => ConfirmationPage(student: students[0])),
+      );
+                                  }
+                                });
+                              },
+                              child: Text("S'inscrire au cours"),
+                            ),
+
                                   ],
                                 ),
                                

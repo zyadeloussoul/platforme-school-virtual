@@ -8,7 +8,7 @@ class SignUpPage extends StatelessWidget {
         children: [
           // Background Image
           Image.asset(
-            'images/placeholder.png',
+            'images/girl.png',
             fit: BoxFit.cover,
             width: double.infinity,
             height: double.infinity,
