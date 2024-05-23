@@ -33,20 +33,16 @@ class SignUpPage extends StatelessWidget {
                 ),
                 SizedBox(height: 20.0),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Nom'),
+                  decoration: InputDecoration(labelText: 'FirstName'),
                 ),
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Prénom'),
+                  decoration: InputDecoration(labelText: 'LastName'),
                 ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'Age'),
-                ),
+                
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Email'),
                 ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'Phone Number'),
-                ),
+               
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Password'),
                   obscureText: true,

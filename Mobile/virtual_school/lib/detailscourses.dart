@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'student.dart';
 import 'confirmation.dart';
-class CourseDetailsPage extends StatelessWidget {
-  final Course course;
+import 'package:http/http.dart' as http;
+import 'package:virtual_school/cours.dart' as Cours;
+import 'dart:convert';
 
-  CourseDetailsPage(this.course);
+class CourseDetailsPage extends StatelessWidget {
+  final Cours.Course course;
+  final String image;
+
+  CourseDetailsPage(this.course, this.image);
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +22,10 @@ class CourseDetailsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Image.asset(
-              course.image,
+            Image.memory(
+              base64Decode(image),
               fit: BoxFit.cover,
-              height: 300.0, 
+              height: 300.0,
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -36,7 +41,7 @@ class CourseDetailsPage extends StatelessWidget {
                   ),
                   SizedBox(height: 8.0),
                   Text(
-                    'Category: ${course.category}',
+                    'Category: ${course.categoryName}',
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.grey,
@@ -61,7 +66,7 @@ class CourseDetailsPage extends StatelessWidget {
                       Icon(Icons.star, color: Colors.amber, size: 20.0),
                       SizedBox(width: 4.0),
                       Text(
-                        course.stars.toString(),
+                        course.rating.toString(),
                         style: TextStyle(fontSize: 18.0),
                       ),
                       Spacer(),
@@ -73,44 +78,44 @@ class CourseDetailsPage extends StatelessWidget {
                         ),
                       ),
                     ],
-                  ),   SizedBox(height: 16.0),
+                  ),
+                  SizedBox(height: 16.0),
                   Center(
-                child: ElevatedButton(
-  onPressed: () {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text("Confirmation"),
-          content: Text("Voulez-vous vraiment vous inscrire au cours ?"),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(false); // Ferme la boîte de dialogue et renvoie false
-              },
-              child: Text("Non"),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(true); // Ferme la boîte de dialogue et renvoie true
-              },
-              child: Text("Oui"),
-            ),
-          ],
-        );
-      },
-    ).then((value) {
-      if (value == true) {
-        Navigator.push(
-                                     context,
-                                  MaterialPageRoute(builder: (context) => ConfirmationPage(student: students[0])),
-                                     );
-      }
-    });
-  },
-  child: Text("S'inscrire au cours"),
-),
-
+                    child: ElevatedButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Confirmation"),
+                              content: Text("Voulez-vous vraiment vous inscrire au cours ?"),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(false); // Ferme la boîte de dialogue et renvoie false
+                                  },
+                                  child: Text("Non"),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(true); // Ferme la boîte de dialogue et renvoie true
+                                  },
+                                  child: Text("Oui"),
+                                ),
+                              ],
+                            );
+                          },
+                        ).then((value) {
+                          if (value == true) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ConfirmationPage(student: students[0])),
+                            );
+                          }
+                        });
+                      },
+                      child: Text("S'inscrire au cours"),
+                    ),
                   ),
                 ],
               ),
@@ -121,6 +126,3 @@ class CourseDetailsPage extends StatelessWidget {
     );
   }
 }
-
-
-

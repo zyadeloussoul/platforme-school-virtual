@@ -1,50 +1,41 @@
 import 'confirmation.dart';
+
 class Student {
-  final String nom;
-  final String prenom;
-  final String age;
+  final String id;
+  final String firstName;
+  final String lastName;
   final String email;
-  final String phone;
-  final String password;
-  final String verify;
+  final String? imagePath;
 
   Student({
-    required this.nom,
-    required this.prenom,
-    required this.age,
+    required this.id,
+    required this.firstName,
+    required this.lastName,
     required this.email,
-    required this.phone,
-    required this.password,
-    required this.verify,
+     this.imagePath,
   });
 }
 
- List<Student> students = [
-    Student(
-      nom: 'John',
-      prenom: 'Doe',
-      age: '25',
-      email: 'john.doe@example.com',
-      phone: '1234567890',
-      password: "password",
-      verify: 'password',
-    ),
-    Student(
-      nom: 'Alice',
-      prenom: 'Smith',
-      age: '30',
-      email: 'alice.smith@example.com',
-      phone: '9876543210',
-      password: 'password',
-      verify: 'password',
-    ),
-    Student(
-      nom: 'Bob',
-      prenom: 'Johnson',
-      age: '35',
-      email: 'bob.johnson@example.com',
-      phone: '5555555555',
-      password: 'password',
-      verify: 'password',
-    ),
-  ];
+List<Student> students = [
+  Student(
+    id: '1',
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john.doe@example.com',
+    imagePath: 'assets/images/john_doe.png',
+  ),
+  Student(
+    id: '2',
+    firstName: 'Alice',
+    lastName: 'Smith',
+    email: 'alice.smith@example.com',
+    imagePath: 'assets/images/alice_smith.png',
+  ),
+  Student(
+    id: '3',
+    firstName: 'Bob',
+    lastName: 'Johnson',
+    email: 'bob.johnson@example.com',
+    imagePath: 'assets/images/bob_johnson.png',
+  ),
+];

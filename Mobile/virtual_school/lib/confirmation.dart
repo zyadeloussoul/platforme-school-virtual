@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'student.dart'; 
+
 class ConfirmationPage extends StatelessWidget {
- final Student student; 
+  final Student student;
 
   ConfirmationPage({required this.student});
 
@@ -15,7 +16,7 @@ class ConfirmationPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Mr/Mme ${student.nom} ${student.prenom},',
+              'Mr/Mme ${student.firstName} ${student.lastName},',
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10.0),
@@ -25,23 +26,15 @@ class ConfirmationPage extends StatelessWidget {
             ),
             SizedBox(height: 10.0),
             Text(
-              'Nom: ${student.nom}',
+              'Nom: ${student.lastName}',
               style: TextStyle(fontSize: 16.0),
             ),
             Text(
-              'Prénom: ${student.prenom}',
-              style: TextStyle(fontSize: 16.0),
-            ),
-            Text(
-              'Age: ${student.age}',
+              'Prénom: ${student.firstName}',
               style: TextStyle(fontSize: 16.0),
             ),
             Text(
               'Email: ${student.email}',
-              style: TextStyle(fontSize: 16.0),
-            ),
-            Text(
-              'Phone Number: ${student.phone}',
               style: TextStyle(fontSize: 16.0),
             ),
             SizedBox(height: 20.0),
