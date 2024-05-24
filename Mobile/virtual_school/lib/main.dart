@@ -4,7 +4,37 @@ import 'package:virtual_school/signup.dart';
 import 'newlettress.dart';
 import 'footer.dart';
 import 'login.dart';
-import 'signup.dart';
+import 'cours.dart';
+import 'confirmation.dart';
+import 'student.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'cours.dart' as cours; 
+import 'dart:typed_data';
+
+
+Future<List<cours.Course>> fetchCourses() async {
+  final response = await http.get(Uri.parse('http://localhost:8099/admin/courses'));
+  if (response.statusCode == 200) {
+    List<dynamic> coursesJson = json.decode(response.body);
+    List<cours.Course> courses = coursesJson.map((json) => cours.Course.fromJson(json)).toList();
+    
+    // Print a success message
+    print('Successfully fetched courses');
+
+    // Print the titles of all fetched courses
+    for (var course in courses) {
+      print('Course Title: ${course.title}');
+    }
+
+    return courses;
+  } else {
+    throw Exception('Failed to load courses');
+  }
+}
+
+
+
 void main() {
   runApp(MyApp());
 }
@@ -17,45 +47,45 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           titleTextStyle: TextStyle(
-            color: Colors.green, // Set the color to green
-            fontSize: 20.0, // Set the font size
-            fontWeight: FontWeight.bold, // Set the font weight
+            color: Colors.green,
+            fontSize: 20.0, 
+            fontWeight: FontWeight.bold, 
           ),
         ),
       ),
-      home: HomePage(),
+        home: FutureBuilder<List<cours.Course>>(
+        future: fetchCourses(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            print("Fetching courses...");
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            print("Error fetching courses: ${snapshot.error}");
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (snapshot.hasData) {
+            print("Successfully fetched courses");
+            snapshot.data!.forEach((course) {
+              print('Course Title: ${course.title}');
+            });
+            return HomePage(courses: snapshot.data!);
+          } else {
+            print("No courses found");
+            return Center(child: Text('No courses found'));
+          }
+        },
+      ),
     );
   }
 }
 
+
 class HomePage extends StatelessWidget {
-  List<Course> courses = [
-    Course(
-      image: 'images/girl.png',
-      category: 'Category 1',
-      title: 'Course 1',
-      description: 'Description for Course 1',
-      stars: 4.5,
-      price: 19.99,
-    ),
-    Course(
-      image: 'images/girl.png',
-      category: 'Category 2',
-      title: 'Course 2',
-      description: 'Description for Course 2',
-      stars: 4.2,
-      price: 24.99,
-    ),
-    Course(
-      image: 'images/girl.png',
-      category: 'Category 3',
-      title: 'Course 3',
-      description: 'Description for Course 3',
-      stars: 4.0,
-      price: 29.99,
-    ),
-  ];
- final ScrollController _scrollController = ScrollController();
+  
+  final List<cours.Course> courses;
+
+  HomePage({required this.courses});
+
+  final ScrollController _scrollController = ScrollController();
 
   void _scrollToTop() {
     _scrollController.animateTo(
@@ -72,6 +102,16 @@ class HomePage extends StatelessWidget {
       curve: Curves.easeInOut,
     );
   }
+Future<Uint8List> _downloadImage(String id) async {
+  final response = await http.get(Uri.parse('http://localhost:8099/Api/Certif/downloadCertifImage/$id'));
+  if (response.statusCode == 200) {
+    return response.bodyBytes;
+  } else {
+    throw Exception('Failed to download image');
+  }
+}
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -92,10 +132,8 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      
       drawer: Drawer(
         child: Column(
-          
           children: <Widget>[
             DrawerHeader(
               child: Text('Menu'),
@@ -105,26 +143,27 @@ class HomePage extends StatelessWidget {
             ),
             Expanded(
               child: ListView(
-                
                 padding: EdgeInsets.symmetric(),
                 children: <Widget>[
                   ListTile(
                     title: Text('Accueil'),
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => HomePage(),
+                        builder: (context) => HomePage(courses: courses),
                       ));
                     },
                   ),
-                  ListTile(
-                    title: Text('Cours'),
-                    onTap: () {
-                   
-                    },
-                  ),
+                 ListTile(
+  title: Text('Cours'),
+  onTap: () {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => CoursePage(),
+    ));
+  },
+),
                   ListTile(
                     title: Text('À propos'),
-                   onTap: () {
+                    onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => aapropos(),
                       ));
@@ -143,16 +182,16 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
+                        MaterialPageRoute(builder: (context) => LoginPage()),
                       );
                     },
                   ),
                   ListTile(
                     title: Text("S'inscrire"),
                     onTap: () {
-                        Navigator.push(
+                      Navigator.push(
                         context,
-                      MaterialPageRoute(builder: (context) => SignUpPage()),
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
                       );
                     },
                   ),
@@ -163,6 +202,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: ListView(
+        controller: _scrollController,
         children: [
           Container(
             padding: EdgeInsets.all(30.0),
@@ -194,7 +234,9 @@ class HomePage extends StatelessWidget {
                       SizedBox(height: 20.0),
                       ElevatedButton(
                         onPressed: () {
-                          // Action when button is pressed
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => CoursePage(),
+                          ));
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
@@ -241,6 +283,7 @@ class HomePage extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: courses.map((course) {
+
                       return Container(
                         margin: EdgeInsets.symmetric(horizontal: 10.0),
                         width: 200.0,
@@ -250,26 +293,43 @@ class HomePage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Image.asset(
-                                course.image,
-                                height: 150.0,
-                                width: double.infinity,
-                                fit: BoxFit.cover,
-                              ),
+
+FutureBuilder<Uint8List>(
+  future: _downloadImage(course.id),
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      return CircularProgressIndicator();
+    } else if (snapshot.hasError) {
+      return Text('Error loading image: ${snapshot.error}');
+    } else {
+      Uint8List imageData = snapshot.data!;
+      return Image.memory(
+        imageData,
+        height: 150.0,
+        width: double.infinity,
+        fit: BoxFit.cover,
+      );
+    }
+  },
+),
+
+
+
                               Padding(
                                 padding: EdgeInsets.all(10.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      course.category,
+                                      course.categoryName,
                                       style: TextStyle(fontSize: 12.0, color: Colors.black54),
                                     ),
                                     SizedBox(height: 5.0),
-                                    Text(
-                                      course.title,
-                                      style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.black),
-                                    ),
+                                Text(
+                                  course.title ?? 'No Title', 
+                                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.black),
+                                ),
+
                                     SizedBox(height: 5.0),
                                     Text(
                                       course.description,
@@ -281,7 +341,7 @@ class HomePage extends StatelessWidget {
                                         Icon(Icons.star, color: Colors.amber, size: 16.0),
                                         SizedBox(width: 5.0),
                                         Text(
-                                          course.stars.toString(),
+                                          course.rating.toString(),
                                           style: TextStyle(fontSize: 12.0, color: Colors.black),
                                         ),
                                       ],
@@ -294,15 +354,44 @@ class HomePage extends StatelessWidget {
                                     SizedBox(height: 10.0),
                                     ElevatedButton(
                                       onPressed: () {
-                                        // Action when button is pressed
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Text("Confirmation"),
+                                              content: Text("Voulez-vous vraiment vous inscrire au cours ?"),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop(false); // Ferme la boîte de dialogue et renvoie false
+                                                  },
+                                                  child: Text("Non"),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop(true); // Ferme la boîte de dialogue et renvoie true
+                                                  },
+                                                  child: Text("Oui"),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ).then((value) {
+                                          if (value == true) {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => ConfirmationPage(student: students[0]),
+                                              ),
+                                            );
+                                          }
+                                        });
                                       },
                                       child: Text("S'inscrire au cours"),
                                     ),
                                   ],
                                 ),
-                               
-                              ), 
-                           
+                              ),
                             ],
                           ),
                         ),
@@ -312,18 +401,16 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
-          
           ),
-           aapropos(),
-           NewLettres(),
+          aapropos(),
+          NewLettres(),
           Container(
-  height: 200.0, // Adjust the height as needed
-  child: Footer(),
-),
+            height: 200.0, // Adjust the height as needed
+            child: Footer(),
+          ),
         ],
       ),
     );
-    
   }
 
   Widget _buildTextWithSubtext(String number, String subtext) {
@@ -356,19 +443,48 @@ class HomePage extends StatelessWidget {
 }
 
 class Course {
-  final String image;
-  final String category;
+  final String id;
   final String title;
   final String description;
-  final double stars;
+  final String mainImagePath;
   final double price;
+  final DateTime startDate;
+  final String instructorName;
+  final DateTime endDate;
+  final String categoryName;
+  final double rating;
+  final String? url;
+
 
   Course({
-    required this.image,
-    required this.category,
+    required this.id,
     required this.title,
     required this.description,
-    required this.stars,
+    required this.mainImagePath,
     required this.price,
+    required this.startDate,
+    required this.instructorName,
+    required this.endDate,
+    required this.categoryName,
+    required this.rating,
+     this.url,
+ 
   });
+
+  factory Course.fromJson(Map<String, dynamic> json) {
+    return Course(
+      id: json['id'],
+      title: json['title'],
+      description: json['description'],
+      mainImagePath: json['mainImagePath'],
+      price: json['price'].toDouble(),
+      startDate: DateTime.parse(json['startDate']),
+      instructorName: json['instructorName'],
+      endDate: DateTime.parse(json['endDate']),
+      categoryName: json['categoryName'],
+      rating: json['rating'].toDouble(),
+   
+
+    );
+  }
 }
