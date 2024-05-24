@@ -1,12 +1,47 @@
 import 'package:flutter/material.dart';
 import 'signup.dart';
+import 'main.dart';
+import 'package:http/http.dart' as http;
 class LoginPage extends StatelessWidget {
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  Future<void> login(BuildContext context) async {
+  final response = await http.post(
+  Uri.parse('http://localhost:8099/user/login'),
+  headers: <String, String>{
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+  },
+  body: <String, String>{
+    'email': usernameController.text,
+    'password': passwordController.text,
+  },
+);
+
+    if (response.statusCode == 200) {
+      // Handle successful login
+      print('Login successful');
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) =>  MyApp()),
+      );
+    } else {
+      // Handle unsuccessful login
+      print('Failed to login: ${response.body}');
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SignUpPage()),
+      );
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          // Background image
           Image.asset(
             'images/girl.png',
             fit: BoxFit.cover,
@@ -21,6 +56,7 @@ class LoginPage extends StatelessWidget {
                 children: <Widget>[
                   // Username text field
                   TextField(
+                    controller: usernameController,
                     decoration: InputDecoration(
                       hintText: 'Username',
                       filled: true,
@@ -30,6 +66,7 @@ class LoginPage extends StatelessWidget {
                   SizedBox(height: 20.0),
                   // Password text field
                   TextField(
+                    controller: passwordController,
                     decoration: InputDecoration(
                       hintText: 'Password',
                       filled: true,
@@ -41,7 +78,7 @@ class LoginPage extends StatelessWidget {
                   // Login button
                   ElevatedButton(
                     onPressed: () {
-                      // Add login logic here
+                      login(context);
                     },
                     child: Text('Login'),
                   ),
@@ -51,7 +88,7 @@ class LoginPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                      MaterialPageRoute(builder: (context) => SignUpPage()),
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
                       );
                     },
                     child: Text('Sign up', style: TextStyle(decoration: TextDecoration.underline)),

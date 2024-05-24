@@ -163,7 +163,7 @@ class _CoursePageState extends State<CoursePage> {
                                 return CircularProgressIndicator();
                               } else if (snapshot.hasError) {
                                 return Image.asset(
-                                  'assets/placeholder.png',
+                                  'images/girl.png',
                                   fit: BoxFit.cover,
                                   height: 300.0,
                                 );

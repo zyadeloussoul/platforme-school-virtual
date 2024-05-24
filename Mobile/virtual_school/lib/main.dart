@@ -484,7 +484,7 @@ class Course {
       categoryName: json['categoryName'],
       rating: json['rating'].toDouble(),
    
-    // Assign the value from the JSON to the image field
+
     );
   }
 }
